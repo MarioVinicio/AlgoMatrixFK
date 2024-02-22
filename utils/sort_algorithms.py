@@ -8,6 +8,14 @@ class SortAlgorithms:
         according to their individual digits. The algorithm processes the digits from the least significant
         to the most significant or vice versa. Radix sort can be applied to integers, strings, or other
         data types where a meaningful ordering can be defined for the individual digits.
+
+        Sorts the input list in ascending order using the Radix Sort algorithm.
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
         """
 
         def counting_sort(arr, exp):
@@ -47,4 +55,25 @@ class SortAlgorithms:
             counting_sort(arr, exp)
             exp *= 10  # Move to the next digit place
 
+        return arr
+    
+
+    def bubble_sort(self, arr: List[int]) -> List[int]:
+        """
+        Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, 
+        compares adjacent elements, and swaps them if they are in the wrong order. 
+        The pass through the list is repeated until the list is sorted.
+
+        Sorts the input list in ascending order using the Bubble Sort algorithm.
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
+        """
+        for i in range(len(arr)):
+            for j in range(len(arr) - 1, i, -1):
+                if arr[j] < arr[j - 1]:
+                    arr[j], arr[j - 1] = arr[j - 1], arr[j]
         return arr
