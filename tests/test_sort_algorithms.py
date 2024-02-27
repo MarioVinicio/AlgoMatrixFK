@@ -1,4 +1,5 @@
 from logging import Logger
+import time
 import pytest
 from utils.sort_algorithms import SortAlgorithms
 
@@ -11,6 +12,19 @@ def sort_algorithms():
     # teardown
 
 
+@pytest.fixture
+def measure_sort_time(request, test_logger: Logger):
+    start_time = time.time()
+
+    def finalizer():
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        test_logger.info(f"Sort time: {elapsed_time:.6f} seconds")
+
+    request.addfinalizer(finalizer)
+
+
+@pytest.mark.usefixtures("measure_sort_time")
 def test_radix_sort(sort_algorithms: SortAlgorithms, test_logger: Logger):
     """
     Test case for Radix Sort Algorithm
@@ -28,6 +42,7 @@ def test_radix_sort(sort_algorithms: SortAlgorithms, test_logger: Logger):
     ]
 
 
+@pytest.mark.usefixtures("measure_sort_time")
 def test_bubble_sort(sort_algorithms: SortAlgorithms, test_logger: Logger):
     """
     Test case for Bubble Sort Algorithm
@@ -45,6 +60,7 @@ def test_bubble_sort(sort_algorithms: SortAlgorithms, test_logger: Logger):
     ]
 
 
+@pytest.mark.usefixtures("measure_sort_time")
 def test_quick_sort1(sort_algorithms: SortAlgorithms, test_logger: Logger):
     """
     Test case for Quick Sort1 Algorithm
@@ -62,6 +78,7 @@ def test_quick_sort1(sort_algorithms: SortAlgorithms, test_logger: Logger):
     ]
 
 
+@pytest.mark.usefixtures("measure_sort_time")
 def test_quick_sort2(sort_algorithms: SortAlgorithms, test_logger: Logger):
     """
     Test case for Quick Sort2 Algorithm
