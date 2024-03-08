@@ -1,0 +1,19 @@
+tests:
+  - name: descending_order
+    array_to_sort: descending_10K10K.npy
+    sorted_array: sorted_10K10K.npy
+  - name: random_order
+    array_to_sort: random_10K10K.npy
+    sorted_array: sorted_10K10K.npy
+  - name: already_sorted
+    array_to_sort: sorted_10K10K.npy
+    sorted_array: sorted_10K10K.npy
+  - name: with_duplicates
+    array_to_sort: random_dup_10K1K.npy
+    sorted_array: random_dup_sorted_10K1K.npy
+  - name: single_unique_value
+    array_to_sort: one_value_10K.npy
+    sorted_array: one_value_10K.npy
+  - name: very_large_array
+    array_to_sort: very_large_100K100K.npy
+    sorted_array: very_large_sorted_100K100K.npy
