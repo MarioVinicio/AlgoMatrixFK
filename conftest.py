@@ -6,18 +6,6 @@ import logging
 from utils.sort_algorithms import SortAlgorithms
 from logging import Logger
 
-"""
-Using pytest hooks:
-pytest provides hooks that you can use to customize test runs. 
-"""
-
-
-def pytest_runtest_protocol(item, nextitem):
-    """
-    hook to print information before and after each test.
-    """
-    print(f"\nRunning test: {item.nodeid}")
-
 
 """
 Fixture to setup logging
@@ -87,14 +75,14 @@ def sort_algorithms(measure_sort_time):
 
 
 @pytest.fixture
-def measure_sort_time(request: pytest.FixtureRequest, test_logger: Logger, test_params):
+def measure_sort_time(request: pytest.FixtureRequest, test_logger: Logger):
+    """Automatically print run time for each test"""
+
     start_time = time.time()
 
-    def finalizer():
+    def print_sort_time():
         end_time = time.time()
         elapsed_time = end_time - start_time
-        test_logger.info(
-            f"Sorted array: {test_params['name']} - Sort time: {elapsed_time:.6f} seconds"
-        )
+        test_logger.info(f"Sort time: {elapsed_time:.6f} seconds")
 
-    request.addfinalizer(finalizer)
+    request.addfinalizer(print_sort_time)

@@ -1,16 +1,14 @@
 from random import randint
-from typing import List
 
 
 class SortAlgorithms:
-    def radix_sort(self, arr: List[int]) -> List[int]:
+    def radix_sort_lsd(self, arr: list[int]) -> list[int]:
         """
-        Radix sort is a non-comparative sorting algorithm that works by distributing elements into buckets
-        according to their individual digits. The algorithm processes the digits from the least significant
-        to the most significant or vice versa. Radix sort can be applied to integers, strings, or other
-        data types where a meaningful ordering can be defined for the individual digits.
+        Least Significant Digit (LSD) Radix Sort algorithm.
+        Radix Sort is a non-comparative sorting algorithm that sorts integers by processing digits
+        starting from the least significant digit (rightmost digit) to the most significant digit (leftmost digit).
 
-        Sorts the input list in ascending order using the Radix Sort algorithm.
+        Sorts the input list in ascending order using the Radix Sort LSD algorithm.
 
         Parameters:
         - arr (list): The input list to be sorted.
@@ -58,7 +56,55 @@ class SortAlgorithms:
 
         return arr
 
-    def bubble_sort(self, arr: List[int]) -> List[int]:
+    def radix_sort_msd(self, arr: list[int]) -> list[int]:
+        """
+        Most Significant Digit (MSD) Radix Sort algorithm.
+        Similar to the Least Significant Digit (LSD) Radix Sort, MSD Radix Sort is a non-comparative
+        sorting algorithm that sorts integers by processing digits, but it starts from the most
+        significant digit (leftmost digit) and moves towards the least significant digit (rightmost digit).
+
+        Sorts the input list in ascending order using the Radix Sort MSD algorithm.
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
+        """
+
+        def _radix_sort_msd(arr, digit_count):
+            if digit_count == 0:
+                return
+
+            buckets = [[] for _ in range(10)]  # Create 10 buckets for digits 0-9
+
+            # Distribute elements into buckets based on current digit
+            for num in arr:
+                digit = get_digit(num, digit_count)
+                buckets[digit].append(num)
+
+            # Recursively sort each bucket
+            for i in range(10):
+                _radix_sort_msd(buckets[i], digit_count - 1)
+
+            # Concatenate buckets to form the sorted array
+            arr.clear()
+            for bucket in buckets:
+                arr.extend(bucket)
+
+        def get_digit(num, digit_count):
+            # Get the digit at the specified position from the right
+            return (num // 10 ** (digit_count - 1)) % 10
+
+        # Get the maximum number of digits in the array
+        max_digits = max(arr)
+        max_digit_count = len(str(max_digits))
+
+        # Call the helper function to perform MSD Radix Sort
+        _radix_sort_msd(arr, max_digit_count)
+        return arr
+
+    def bubble_sort(self, arr: list[int]) -> list[int]:
         """
         Bubble Sort is a simple sorting algorithm that repeatedly steps through the list,
         compares adjacent elements, and swaps them if they are in the wrong order.
@@ -78,7 +124,7 @@ class SortAlgorithms:
                     arr[j], arr[j - 1] = arr[j - 1], arr[j]
         return arr
 
-    def quick_sort1(self, arr: List[int]) -> List[int]:
+    def quick_sort1(self, arr: list[int]) -> list[int]:
         """
         QuickSort is a highly efficient sorting algorithm that uses a divide-and-conquer strategy to sort elements in a list.
         The basic idea is to choose a "pivot" element from the array and partition the other elements into two sub-arrays
@@ -108,7 +154,7 @@ class SortAlgorithms:
 
         return self.quick_sort1(smaller) + equal + self.quick_sort1(larger)
 
-    def quick_sort2(self, arr: List[int]) -> List[int]:
+    def quick_sort2(self, arr: list[int]) -> list[int]:
         """
         Sorts the input list in ascending order using the QuickSort2 algorithm.
 

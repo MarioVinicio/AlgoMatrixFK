@@ -9,15 +9,30 @@ def numpy_data(file: str):
     return loaded_array.tolist()
 
 
-def test_radix_sort(sort_algorithms: SortAlgorithms, test_logger: Logger, test_params):
+def test_radix_sort_lsd(
+    sort_algorithms: SortAlgorithms, test_logger: Logger, test_params
+):
     """
-    Test case for Radix Sort Algorithm
+    Test case for Radix Sort LSD (Least Significant Digit) Algorithm
     """
-    test_logger.info("Sort Algorithm: RADIX")
+    test_logger.info("Sort Algorithm: RADIX LSD (Least Significant Digit)")
     array_to_sort = numpy_data(test_params["array_to_sort"])
     sorted_array = numpy_data(test_params["sorted_array"])
 
-    assert sort_algorithms.radix_sort(array_to_sort) == sorted_array
+    assert sort_algorithms.radix_sort_lsd(array_to_sort) == sorted_array
+
+
+def test_radix_sort_msd(
+    sort_algorithms: SortAlgorithms, test_logger: Logger, test_params
+):
+    """
+    Test case for Radix Sort MSD (Most Significant Digit) Algorithm
+    """
+    test_logger.info("Sort Algorithm: RADIX MSD (Most Significant Digit)")
+    array_to_sort = numpy_data(test_params["array_to_sort"])
+    sorted_array = numpy_data(test_params["sorted_array"])
+
+    assert sort_algorithms.radix_sort_msd(array_to_sort) == sorted_array
 
 
 def test_bubble_sort(sort_algorithms: SortAlgorithms, test_logger: Logger, test_params):
