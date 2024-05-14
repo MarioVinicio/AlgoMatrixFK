@@ -1,2 +1,2 @@
-# shamanFK
-Test Framework for Algorithms based on pytest
+# AlgoMatrixFK
+Test Framework for Benchmarking Sort Algorithms
