@@ -136,7 +136,7 @@ class SortAlgorithms:
         - arr (list): The input list to be sorted.
 
         Returns:
-        - arr list: The sorted list.
+        - arr (list): The sorted list.
         """
         if len(arr) <= 1:
             return arr
@@ -162,7 +162,7 @@ class SortAlgorithms:
         - arr (list): The input list to be sorted.
 
         Returns:
-        - arr list: The sorted list.
+        - arr (list): The sorted list.
         """
 
         if len(arr) <= 1:
@@ -174,3 +174,76 @@ class SortAlgorithms:
         right = [x for x in arr if x > pivot]
 
         return self.quick_sort2(left) + middle + self.quick_sort2(right)
+
+    def heap_sort(self, arr: list[int]) -> list[int]:
+        """
+        Performs heap sort on the given array.
+
+        Heap sort is a comparison-based sorting algorithm that uses a binary heap data structure.
+        It divides the input into a sorted and an unsorted region and iteratively shrinks the unsorted region by
+        extracting the largest element and moving that to the sorted region.
+
+        The steps involved in heap sort are:
+        1. Build a max heap from the input data.
+        2. At this point, the largest item is stored at the root of the heap. Replace it with the last item of the heap
+        followed by reducing the size of the heap by 1. Finally, heapify the root of the tree.
+        3. Repeat step 2 while the size of the heap is greater than 1.
+
+        Time Complexity:
+        - Building the heap: O(n)
+        - Extracting elements from the heap: O(n log n)
+        - Overall: O(n log n)
+
+        Space Complexity:
+        - In-place sorting: O(1) additional space
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
+        """
+
+        def heapify(arr, n, i):
+            """
+            Helper function to maintain the heap property of a subtree rooted at index i.
+
+            Parameters:
+            arr (list): The list representing the heap.
+            n (int): The size of the heap.
+            i (int): The index of the root element of the subtree.
+
+            Returns:
+            None
+            """
+            largest = i  # Initialize largest as root
+            left = 2 * i + 1  # Left child
+            right = 2 * i + 2  # Right child
+
+            # If left child exists and is greater than root
+            if left < n and arr[left] > arr[largest]:
+                largest = left
+
+            # If right child exists and is greater than largest so far
+            if right < n and arr[right] > arr[largest]:
+                largest = right
+
+            # If largest is not root, swap with root and continue heapifying
+            if largest != i:
+                arr[i], arr[largest] = arr[largest], arr[i]  # Swap
+                heapify(arr, n, largest)
+
+        n = len(arr)
+        # Build a maxheap
+        for i in range(n // 2 - 1, -1, -1):
+            heapify(arr, n, i)
+
+        # Extract elements from heap one by one
+        for i in range(n - 1, 0, -1):
+            arr[i], arr[0] = (
+                arr[0],
+                arr[i],
+            )  # Swap the root (max element) with the last element
+            heapify(arr, i, 0)  # Heapify the reduced heap
+
+        return arr
