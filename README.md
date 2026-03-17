@@ -8,6 +8,8 @@ Algorithms tested:
 [quick_sort1]
 [quick_sort2]
 [heap_sort]
+[python3_sort_new_list]
+[python3_sort_in_place]
 
 Numpy data arrays tested:
 [descending_order]

@@ -245,5 +245,29 @@ class SortAlgorithms:
                 arr[i],
             )  # Swap the root (max element) with the last element
             heapify(arr, i, 0)  # Heapify the reduced heap
+        return arr
 
+    def python3_sort_new_list(self, arr: list[int]) -> list[int]:
+        """
+        Sorts the input list in ascending order using the python3 default algorithm.
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
+        """
+        return sorted(arr)
+
+    def python3_sort_in_place(self, arr: list[int]) -> list[int]:
+        """
+        Sorts the input list in ascending order using the python3 default algorithm.
+
+        Parameters:
+        - arr (list): The input list to be sorted.
+
+        Returns:
+        - arr (list): The sorted list.
+        """
+        arr.sort()
         return arr

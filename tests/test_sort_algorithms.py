@@ -77,3 +77,23 @@ def test_heap_sort(sort_algorithms: SortAlgorithms, test_logger: Logger, test_pa
     sorted_array = numpy_data(test_params["sorted_array"])
 
     assert sort_algorithms.heap_sort(array_to_sort) == sorted_array
+
+def test_python3_sort_new_list(sort_algorithms: SortAlgorithms, test_logger: Logger, test_params):
+    """
+    Test case for python3 Sort new list Algorithm
+    """
+    test_logger.info("Sort Algorithm: Python3 Sort new list")
+    array_to_sort = numpy_data(test_params["array_to_sort"])
+    sorted_array = numpy_data(test_params["sorted_array"])
+
+    assert sort_algorithms.python3_sort_new_list(array_to_sort) == sorted_array
+
+def test_python3_sort_in_place(sort_algorithms: SortAlgorithms, test_logger: Logger, test_params):
+    """
+    Test case for python3 Sort in place Algorithm
+    """
+    test_logger.info("Sort Algorithm: Python3 Sort in place")
+    array_to_sort = numpy_data(test_params["array_to_sort"])
+    sorted_array = numpy_data(test_params["sorted_array"])
+
+    assert sort_algorithms.python3_sort_in_place(array_to_sort) == sorted_array

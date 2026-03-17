@@ -1,2 +1,17 @@
+# General Python ignores
+__pycache__/
 *.pyc
+.venv/
+env/
+.pytest_cache
+test_logs/*
+*.log
+
+# # Ignore large data
+# data/
+# *.csv
+# *.npy
+
+# System files
 .DS_Store
+.gitignore
